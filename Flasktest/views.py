@@ -30,6 +30,7 @@ def remove_entry(entryid):
 
   db_session.delete(entry);
   db_session.commit();
+  flash('Entry with Title:' + entry.title + ' was removed')
   return redirect(url_for('show_entries'))
 
 @app.route('/login', methods=['GET', 'POST'])
