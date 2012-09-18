@@ -21,6 +21,17 @@ def add_entry():
   flash('New entry was succesfully posted')
   return redirect(url_for('show_entries'))
 
+@app.route('/remove/<entryid>')
+def remove_entry(entryid):
+  if not session.get('logged_in'):
+	abort(401)
+  
+  entry = Entry.query.filter_by(id = entryid).first()
+
+  db_session.delete(entry);
+  db_session.commit();
+  return redirect(url_for('show_entries'))
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
   error = None

@@ -14,6 +14,9 @@
   <ul class=entries>
   {% for entry in entries %}
 	<li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+         {% if session.logged_in %}
+		<br><a href='{{ url_for('remove_entry', entryid=entry.id) }}'>X</a>
+	{% endif %}
   {% else %}
 	<li><em>Unbelievable. No entries here so far</em>
   {% endfor %}
